@@ -6,13 +6,14 @@
  * Version: 1.0
  */
 
+
 rule Adware_Browser_Extension_Injector
 {
     meta:
         author      = "AnonLabs"
         description = "Detects adware that installs malicious browser extensions for ad injection"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-01"
         version     = "1.0"
         severity    = "medium"
         category    = "adware"
@@ -41,7 +42,7 @@ rule Adware_Search_Hijacker
         author      = "AnonLabs"
         description = "Detects adware that hijacks browser search settings and homepage"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-01"
         version     = "1.0"
         severity    = "medium"
         category    = "adware"

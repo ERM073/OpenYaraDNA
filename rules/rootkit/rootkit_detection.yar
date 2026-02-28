@@ -12,7 +12,7 @@ rule Rootkit_DKOM_Techniques
         author      = "AnonLabs"
         description = "Detects Direct Kernel Object Manipulation (DKOM) techniques used by rootkits"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-03"
         version     = "1.0"
         severity    = "critical"
         category    = "rootkit"
@@ -39,7 +39,7 @@ rule Rootkit_MBR_Infection
         author      = "AnonLabs"
         description = "Detects MBR (Master Boot Record) rootkit infection markers"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-03"
         version     = "1.0"
         severity    = "critical"
         category    = "rootkit"
@@ -67,7 +67,7 @@ rule Rootkit_Kernel_Driver_Suspicious
         author      = "AnonLabs"
         description = "Detects suspicious kernel driver characteristics associated with rootkits"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-03"
         version     = "1.0"
         severity    = "high"
         category    = "rootkit"
@@ -83,6 +83,6 @@ rule Rootkit_Kernel_Driver_Suspicious
 
     condition:
         uint16(0) == 0x5A4D and
-        ($drv1 and $drv2) and
+        ($drv1 and $drv2 and $drv3) and  // $drv3を追加
         (2 of ($hide*) or $ssdt1)
 }

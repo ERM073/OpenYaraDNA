@@ -12,7 +12,7 @@ rule Backdoor_WebShell_Generic
         author      = "AnonLabs"
         description = "Detects generic PHP/ASP/JSP web shell backdoors"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-01"
         version     = "1.0"
         severity    = "critical"
         category    = "backdoor"
@@ -39,7 +39,7 @@ rule Backdoor_Cobalt_Strike_Beacon
         author      = "AnonLabs"
         description = "Detects Cobalt Strike beacon shellcode and stager patterns"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-01"
         version     = "1.0"
         severity    = "critical"
         category    = "backdoor"
@@ -59,7 +59,7 @@ rule Backdoor_Cobalt_Strike_Beacon
 
     condition:
         uint16(0) == 0x5A4D and
-        (1 of ($pipe*) or 2 of ($s*) or ($s2 and $sleep))
+        (1 of ($pipe*) or $cfg1 or 2 of ($s*) or ($s2 and $sleep))  // ← $cfg1を追加
 }
 
 
@@ -69,7 +69,7 @@ rule Backdoor_Reverse_Shell_PowerShell
         author      = "AnonLabs"
         description = "Detects PowerShell-based reverse shell backdoors"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-01"
         version     = "1.0"
         severity    = "high"
         category    = "backdoor"
@@ -81,7 +81,6 @@ rule Backdoor_Reverse_Shell_PowerShell
         $ps4 = "System.IO.StreamWriter" ascii nocase
         $ps5 = "powershell -nop -w hidden" ascii nocase
         $ps6 = "IEX (New-Object Net.WebClient)" ascii nocase
-        $ps7 = "$stream.Write" ascii nocase
         $enc = "FromBase64String" ascii nocase
 
     condition:
@@ -98,7 +97,7 @@ rule Backdoor_SSH_Authorized_Keys_Abuse
         author      = "AnonLabs"
         description = "Detects malware that writes unauthorized SSH keys for persistent access"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-01"
         version     = "1.0"
         severity    = "high"
         category    = "backdoor"

@@ -12,7 +12,7 @@ rule Dropper_Generic_Temp_Write_Execute
         author      = "AnonLabs"
         description = "Detects droppers that write payloads to temp directories and execute them"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-03"
         version     = "1.0"
         severity    = "high"
         category    = "dropper"
@@ -33,7 +33,7 @@ rule Dropper_Generic_Temp_Write_Execute
         filesize < 10MB and
         (1 of ($tmp*)) and
         ($api1 or $api2) and
-        (1 of ($api3,$api4,$api5))
+        (1 of ($api3,$api4,$api5,$api6))  // $api6を追加
 }
 
 
@@ -43,7 +43,7 @@ rule Dropper_SFX_Embedded_Payload
         author      = "AnonLabs"
         description = "Detects self-extracting archive droppers with embedded executable payloads"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-03"
         version     = "1.0"
         severity    = "high"
         category    = "dropper"
@@ -71,7 +71,7 @@ rule Dropper_Powershell_Download_Execute
         author      = "AnonLabs"
         description = "Detects dropper scripts that download and execute secondary payloads via PowerShell"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-03"
         version     = "1.0"
         severity    = "high"
         category    = "dropper"

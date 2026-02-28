@@ -12,7 +12,7 @@ rule Spyware_Generic_Screenshot_Exfil
         author      = "AnonLabs"
         description = "Detects spyware that captures screenshots and exfiltrates data"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-03"
         version     = "1.0"
         severity    = "high"
         category    = "spyware"
@@ -42,7 +42,7 @@ rule Spyware_Pegasus_Indicators
         author      = "AnonLabs"
         description = "Detects indicators associated with Pegasus spyware artifacts on endpoints"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-03"
         version     = "1.0"
         severity    = "critical"
         category    = "spyware"
@@ -68,7 +68,7 @@ rule Spyware_Clipboard_Monitor
         author      = "AnonLabs"
         description = "Detects spyware that monitors clipboard content (often for crypto wallet theft)"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-03"
         version     = "1.0"
         severity    = "medium"
         category    = "spyware"
@@ -87,5 +87,5 @@ rule Spyware_Clipboard_Monitor
         filesize < 5MB and
         ($api1 and $api2 and $api4) and
         ($api3 or $timer) and
-        $net1
+        ($net1 or $btc)  // $btcを追加
 }

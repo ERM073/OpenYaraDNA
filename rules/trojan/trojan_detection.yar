@@ -12,7 +12,7 @@ rule Trojan_RemoteAccess_Generic
         author      = "AnonLabs"
         description = "Detects generic Remote Access Trojan (RAT) behavior patterns"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-01"
         version     = "1.0"
         severity    = "high"
         category    = "trojan"
@@ -43,7 +43,7 @@ rule Trojan_AgentTesla_Infostealer
         author      = "AnonLabs"
         description = "Detects Agent Tesla infostealer trojan"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-01"
         version     = "1.0"
         severity    = "high"
         category    = "trojan"
@@ -62,7 +62,7 @@ rule Trojan_AgentTesla_Infostealer
     condition:
         uint16(0) == 0x5A4D and
         filesize < 8MB and
-        (3 of ($s*) or (1 of ($cfg*) and 2 of ($s*)))
+        (3 of ($s*) or (1 of ($cfg*) and 2 of ($s*)) or $obf1)  // ← $obf1を追加
 }
 
 
@@ -72,7 +72,7 @@ rule Trojan_AsyncRAT
         author      = "AnonLabs"
         description = "Detects AsyncRAT remote access trojan"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-01"
         version     = "1.0"
         severity    = "high"
         category    = "trojan"
@@ -98,7 +98,7 @@ rule Trojan_Loader_Suspicious_Injection
         author      = "AnonLabs"
         description = "Detects process injection patterns commonly used by trojan loaders"
         reference   = "https://github.com/ERM073/OpenYaraDNA"
-        date        = "2024-01-01"
+        date        = "2026-03-01"
         version     = "1.0"
         severity    = "high"
         category    = "trojan"
@@ -115,5 +115,6 @@ rule Trojan_Loader_Suspicious_Injection
         uint16(0) == 0x5A4D and
         filesize < 10MB and
         (($api1 and $api2 and $api3 and $api4) or
-         ($api5 and $api1 and $api2))
+         ($api5 and $api1 and $api2) or
+         ($api6 and $api1 and $api2))
 }
